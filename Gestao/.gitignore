@@ -1,0 +1,22 @@
+# IDE Eclipse
+.classpath
+.project
+.settings/
+
+# Maven
+/target/
+pom.properties
+
+# Eclipse WTP
+target/m2e-wtp/
+
+# Arquivos gerados
+*.log
+*.class
+*.jar
+*.war
+*.ear
+
+# Sistema operacional
+.DS_Store
+Thumbs.db
