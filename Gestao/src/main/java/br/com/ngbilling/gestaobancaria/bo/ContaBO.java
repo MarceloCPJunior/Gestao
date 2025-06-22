@@ -11,10 +11,10 @@ import br.com.ngbilling.gestaobancaria.util.JSONUtil;
 import jakarta.persistence.EntityManager;
 
 public class ContaBO {
-	public ResponseDTO<ContaDTO> criarConta(String jsonRequest) {
+	public ResponseDTO<ContaDTO> criarConta(String jsonRequest, String ambiente) {
 		ResponseDTO<ContaDTO> response = new ResponseDTO<>();
 
-		try (EntityManager em = JPAUtil.getEntityManager()) {
+		try (EntityManager em = JPAUtil.getEntityManager(ambiente)) {
 			ContaDTO contaDTO = (ContaDTO) JSONUtil.jsonToEntityDTO(jsonRequest, new ContaDTO());
 			response.setResponse(contaDTO);
 
@@ -35,10 +35,10 @@ public class ContaBO {
 		return response;
 	}
 
-	public ResponseDTO<ContaDTO> consultarConta(Long nrConta) {
+	public ResponseDTO<ContaDTO> consultarConta(Long nrConta, String ambiente) {
 		ResponseDTO<ContaDTO> response = new ResponseDTO<>();
 
-		try (EntityManager em = JPAUtil.getEntityManager()) {
+		try (EntityManager em = JPAUtil.getEntityManager(ambiente)) {
 			ContaDAOI dao = new ContaDAOI(em);
 
 			ContaDTO contaDTO = dao.buscarContaToDTO(nrConta);

@@ -16,10 +16,10 @@ import br.com.ngbilling.gestaobancaria.util.JSONUtil;
 import jakarta.persistence.EntityManager;
 
 public class TransacaoBO {
-	public ResponseDTO<ContaDTO> criarTransacao(String jsonRequest) {
+	public ResponseDTO<ContaDTO> criarTransacao(String jsonRequest, String ambiente) {
 		ResponseDTO<ContaDTO> response = new ResponseDTO<>();
 
-		try (EntityManager em = JPAUtil.getEntityManager()) {
+		try (EntityManager em = JPAUtil.getEntityManager(ambiente)) {
 			TransacaoDTO transacaoDTO = (TransacaoDTO) JSONUtil.jsonToEntityDTO(jsonRequest, new TransacaoDTO());
 
 			TransacaoDAOI transacaoDao = new TransacaoDAOI(em);

@@ -11,13 +11,20 @@ import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
 
 public class JPAUtil {
-	private static final EntityManagerFactory emf = buildEntityManagerFactory();
+	private static final String ENV_DEV = System.getenv().getOrDefault("ENV", "dev");
+	private static final String ENV_PROD = System.getenv().getOrDefault("ENV", "prod");
 
-	private static EntityManagerFactory buildEntityManagerFactory() {
+	private static final EntityManagerFactory emf_dev = buildEntityManagerFactory(ENV_DEV);
+	private static final EntityManagerFactory emf_prod = buildEntityManagerFactory(ENV_PROD);
+
+	private static EntityManagerFactory buildEntityManagerFactory(String propertiesFile) {
 		try {
-			// Carregar arquivo properties
 			Properties props = new Properties();
-			try (InputStream in = JPAUtil.class.getClassLoader().getResourceAsStream("db.properties")) {
+			String nmArquivo = "db-" + propertiesFile + ".properties";
+			try (InputStream in = JPAUtil.class.getClassLoader().getResourceAsStream(nmArquivo)) {
+				if (in == null) {
+					throw new RuntimeException("Arquivo de configuração não encontrado: " + propertiesFile);
+				}
 				props.load(in);
 			}
 
@@ -27,13 +34,11 @@ public class JPAUtil {
 			properties.put("jakarta.persistence.jdbc.password", props.getProperty("db.password"));
 			properties.put("jakarta.persistence.jdbc.driver", props.getProperty("db.driver"));
 
-			// Configurações do hibernate
-			properties.put("hibernate.dialect", "org.hibernate.dialect.PostgreSQLDialect"); // Dialeto
-			properties.put("hibernate.show_sql", "true"); // mostrar sql no console - prefiro que mostre
-			properties.put("hibernate.format_sql", "true"); // formatar o sql, prefiro assim, mas para não puluir muito o console é bom deixar false
+			properties.put("hibernate.dialect", "org.hibernate.dialect.PostgreSQLDialect");
+			properties.put("hibernate.show_sql", "true");
+			properties.put("hibernate.format_sql", "true");
 			properties.put("hibernate.hbm2ddl.auto", "update");
 
-			// Pool Hikari
 			properties.put("hibernate.hikari.maximumPoolSize", "10");
 			properties.put("hibernate.hikari.minimumIdle", "2");
 			properties.put("hibernate.hikari.idleTimeout", "30000");
@@ -45,7 +50,11 @@ public class JPAUtil {
 		}
 	}
 
-	public static EntityManager getEntityManager() {
-		return emf.createEntityManager();
+	public static EntityManager getEntityManager(String env) {
+		if (env != null && "prod".equalsIgnoreCase(env)) {
+			return emf_prod.createEntityManager();
+		} else {
+			return emf_dev.createEntityManager();
+		}
 	}
 }
