@@ -1,0 +1,16 @@
+openAPI:
+  info:
+    title: API de Gestão Bancária
+    version: "1.0.0"
+    description: API para gerenciamento de contas e transações bancárias
+    contact:
+      name: Equipe NGBilling
+      email: contato@ngbilling.com
+    license:
+      name: MIT License
+      url: https://opensource.org/licenses/MIT
+  servers:
+    - url: http://gestao.us-east-1.elasticbeanstalk.com/api
+      description: Produção AWS
+    - url: http://localhost:8080/Gestao
+      description: Desenvolvimento Local
