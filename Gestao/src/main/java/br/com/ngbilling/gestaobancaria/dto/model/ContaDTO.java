@@ -10,7 +10,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
 @Schema(title = "Criar conta", description = "Parâmetros do JSON para criar uma nova conta")
 public class ContaDTO implements EntityDTO {
 
-	@Schema(description = "Número da conta bancária", example = "123456789")
+	@Schema(name = "numero_conta", description = "Número da conta bancária", example = "123456789")
 	private Long numeroConta;
 
 	@Schema(description = "Saldo atual da conta", example = "1500.50")

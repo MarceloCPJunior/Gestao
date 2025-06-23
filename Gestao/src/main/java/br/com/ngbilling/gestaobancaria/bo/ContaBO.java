@@ -56,10 +56,14 @@ public class ContaBO {
 	}
 
 	private Conta dtoToEntity(EntityManager em, ContaDTO dto) throws Exception {
-		Conta conta = new Conta();
-		conta.setCdConta(dto.getNumeroConta());
-		conta.setSaldo(dto.getSaldo());
-		return conta;
+		try {
+			Conta conta = new Conta();
+			conta.setCdConta(dto.getNumeroConta());
+			conta.setSaldo(dto.getSaldo());
+			return conta;
+		} catch (Exception e) {
+			throw new Exception("Informações inválidas");
+		}
 	}
 
 	private void validar(Conta conta, ResponseDTO<?> response) throws Exception {

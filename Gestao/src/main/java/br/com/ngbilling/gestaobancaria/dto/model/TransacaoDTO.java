@@ -10,10 +10,10 @@ import io.swagger.v3.oas.annotations.media.Schema;
 @Schema(title = "Criar Transacao", description = "Parâmetros do JSON para gerar uma transação")
 public class TransacaoDTO implements EntityDTO {
 
-	@Schema(description = "Forma de pagamento (D=Débito, C=Crédito, P=PIX)", example = "D")
+	@Schema(name = "forma_pagamento", description = "Forma de pagamento (D=Débito, C=Crédito, P=PIX)", example = "D")
 	private Character formaPagamento;
 
-	@Schema(description = "Número da conta bancária", example = "123456789")
+	@Schema(name = "numero_conta", description = "Número da conta bancária", example = "123456789")
 	private Long numeroConta;
 
 	@Schema(description = "Valor da transação", example = "100.50")
