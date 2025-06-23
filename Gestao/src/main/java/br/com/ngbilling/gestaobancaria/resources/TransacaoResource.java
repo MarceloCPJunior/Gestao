@@ -26,7 +26,7 @@ public class TransacaoResource extends GenericResource {
 
 	@POST
 	@Produces(MediaType.APPLICATION_JSON)
-	@Operation(summary = "Criar nova transação", description = "Cria uma nova transação bancária com os dados fornecidos")
+	@Operation(summary = "Criar nova transação", description = "Cria uma nova transação bancária")
 	@ApiResponses(value = {
 			@ApiResponse(responseCode = "201", description = "Transação criada com sucesso", content = @Content(mediaType = MediaType.APPLICATION_JSON, schema = @Schema(implementation = TransacaoDTO.class))),
 			@ApiResponse(responseCode = "404", description = "Conta não encontrada") })

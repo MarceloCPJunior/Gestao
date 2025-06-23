@@ -7,7 +7,7 @@ import br.com.ngbilling.gestaobancaria.interfaces.EntityDTO;
 import br.com.ngbilling.gestaobancaria.model.Transacao;
 import io.swagger.v3.oas.annotations.media.Schema;
 
-@Schema(description = "DTO para representar uma transação bancária")
+@Schema(title = "Criar Transacao", description = "Parâmetros do JSON para gerar uma transação")
 public class TransacaoDTO implements EntityDTO {
 
 	@Schema(description = "Forma de pagamento (D=Débito, C=Crédito, P=PIX)", example = "D")

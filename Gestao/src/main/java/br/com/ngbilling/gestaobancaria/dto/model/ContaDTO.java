@@ -7,7 +7,7 @@ import br.com.ngbilling.gestaobancaria.interfaces.EntityDTO;
 import br.com.ngbilling.gestaobancaria.model.Conta;
 import io.swagger.v3.oas.annotations.media.Schema;
 
-@Schema(description = "DTO para representar uma conta bancária")
+@Schema(title = "Criar conta", description = "Parâmetros do JSON para criar uma nova conta")
 public class ContaDTO implements EntityDTO {
 
 	@Schema(description = "Número da conta bancária", example = "123456789")

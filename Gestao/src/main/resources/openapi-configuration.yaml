@@ -4,13 +4,13 @@ openAPI:
     version: "1.0.0"
     description: API para gerenciamento de contas e transações bancárias
     contact:
-      name: Equipe NGBilling
-      email: contato@ngbilling.com
+      name: Marcelo de Castro
+      email: marcelocastro.pj@gmail.com
     license:
       name: MIT License
       url: https://opensource.org/licenses/MIT
   servers:
-    - url: http://gestao.us-east-1.elasticbeanstalk.com/api
-      description: Produção AWS
+    - url: http://gestao.us-east-1.elasticbeanstalk.com
+      description: Link de Homologação AWS
     - url: http://localhost:8080/Gestao
       description: Desenvolvimento Local

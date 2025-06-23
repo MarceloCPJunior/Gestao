@@ -27,7 +27,7 @@ public class ContaResource extends GenericResource {
 
 	@POST
 	@Produces(MediaType.APPLICATION_JSON)
-	@Operation(summary = "Criar nova conta", description = "Cria uma nova conta bancária com os dados fornecidos")
+	@Operation(summary = "Criar nova conta", description = "Cria uma nova conta bancária")
 	@ApiResponses(value = {
 			@ApiResponse(responseCode = "201", description = "Conta criada com sucesso", content = @Content(mediaType = MediaType.APPLICATION_JSON, schema = @Schema(implementation = ContaDTO.class))),
 			@ApiResponse(responseCode = "409", description = "Conflito - Conta já existe") })
